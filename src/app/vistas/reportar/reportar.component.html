@@ -1,0 +1,60 @@
+<app-header></app-header>
+
+<button style="float: right; margin-left: 1%; margin-right: 1%; margin-top: 1%;" type="button" class="btn btn-dark" (click)="contarFilas()">Contar Equipos</button>
+<button style="float: right; margin-left: 1%; margin-bottom: 1%; margin-top: 1%;" type="button" class="btn btn-dark" (click)="Regresar()">Regresar</button>
+<button style="float: right; margin-left: 1%; margin-top: 1%;" class="btn btn-dark" (click)="exportarExcel()">Exportar</button>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Datos del Reporte</h4>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="reportesCapturados" (ngSubmit)="actualizarReportesPC(reportesCapturados.value)">
+                <div style="display:inline-block;"><h5>Ubicación del Equipo (Edificio):</h5></div>
+                <div style="display:inline-block;"><input class="form-control" formControlName="ubicacion" readonly></div>
+                <br><br>
+                <h5>Número de Aula:</h5>
+                <input class="form-control" formControlName="aula" readonly>
+                <br>
+                <h5>Número de Serie del Equipo:</h5>
+                <input class="form-control" formControlName="serie" readonly>
+                <br>
+                <h5>Observaciones:</h5>
+                <textarea style="resize: none;" class="form-control" formControlName="observaciones" readonly></textarea>
+                <br>
+                <h5>Estatus:</h5>
+                <input type="text" class="form-control" formControlName="estatus" oninput="this.value = this.value.toUpperCase()" placeholder="FINALIZADO">
+                <br>
+                <button style="float: right; margin-left: 1%;" type="button" class="btn btn-secondary" (click)="closePopup()">Close</button>
+                <button type="submit" style="float: right;" class="btn btn-primary" [disabled]="reportesCapturados.invalid">Actualizar</button>
+                <br><br>
+            </form>
+          </div>   
+      </div>
+    </div>
+  </div>
+
+<table class="table table-hover" id="tblDatos">
+    <thead>
+        <tr>
+            <th scope="col">Edificio</th>
+            <th scope="col">#. de Aula</th>
+            <th scope="col">#. de Serie</th>
+            <th scope="col">Observaciones</th>
+            <th scope="col">Estatus</th>
+            <th scope="col">Modificar</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let datos of reportesdePC">
+            <th>{{datos.ubicacion}}</th>
+            <th>{{datos.aula}}</th>
+            <th>{{datos.serie}}</th>
+            <th>{{datos.observaciones}}</th>
+            <th><div class="button" [ngClass]="datos.estatus == 'ACTIVO' ? 'activo' : 'finalizado'">{{datos.estatus}}</div></th>
+            <th><button class="btn btn-dark" (click)="openPopup(); getReportesUnitarios(datos)">Editar</button></th>
+        </tr>
+    </tbody>
+</table>

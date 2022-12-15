@@ -1,0 +1,17 @@
+img{
+    margin-left: 10px;
+    border-radius: 5%;
+    width: 180px;
+    height: 100px;
+}
+
+nav{
+    background-color: #542c2b;
+}
+
+span{
+    color: white;
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 15%;
+}

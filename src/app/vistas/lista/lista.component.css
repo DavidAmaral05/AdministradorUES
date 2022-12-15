@@ -1,0 +1,44 @@
+thead{
+    background-color: #542c2b;
+    color: white;
+    text-align: center;
+    font-size: smaller;
+}
+
+tbody{
+    font-size: smaller;
+    text-align: center;
+}
+
+input{
+    text-transform: uppercase;
+}
+
+.modal{
+    text-align:center;
+    padding:0!important;        
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.modal:before{
+    content:'';
+    display:inline-block;
+    height:100%;
+    vertical-align:middle;
+    margin-right: -4px;
+}
+.modal-dialog{
+    display:inline-block;
+    text-align:left;
+    vertical-align:middle;
+    width: 500px;
+}
+
+.modal-body{
+    height: 500px;
+    width: auto;
+    overflow-y: scroll;
+}
+
+select{
+    width: 160px;
+}
